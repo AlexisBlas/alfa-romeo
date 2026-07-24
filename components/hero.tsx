@@ -52,12 +52,6 @@ export function Hero() {
               >
                 EXPLORE THE CAR
               </a>
-              <a
-                href="#drivers"
-                className="inline-flex items-center justify-center border-[1.5px] border-white/50 px-7 py-4 font-condensed text-[14px] font-bold tracking-[2px] text-white transition-[transform,border-color,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white hover:bg-white/[0.06] active:scale-[0.98]"
-              >
-                MEET THE DRIVERS
-              </a>
             </div>
           </div>
         </div>
