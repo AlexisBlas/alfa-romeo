@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #040508;
+  --color-ink-soft: rgba(4, 5, 8, 0.4);
+  --color-ink-faint: rgba(4, 5, 8, 0.2);
+  --color-ink-muted: rgba(14, 14, 14, 0.5);
+  --color-racing-red: #ee0216;
+  --color-amber: #df8b2b;
+  --color-amber-hot: #ff5500;
+  --color-surface: #ffffff;
+  --color-cta-ink: #101010;
+
+  --spacing-page: 30px;
+
+  --font-display: var(--font-alfa-slab), "Rockwell", "Courier New", serif;
+  --font-bebas: var(--font-bebas-neue), "Impact", sans-serif;
+  --font-condensed: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --font-body: var(--font-barlow-semi), "Arial Narrow", sans-serif;
+  --font-mono: var(--font-lato), "Lato", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+/* Layered so text-* utilities can override anchor color */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Transparent content shells — contrast comes from the video scrim */
+.frost-panel,
+.frost-panel-dark {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.delay-1 {
+  animation-delay: 0.06s;
+}
+.delay-2 {
+  animation-delay: 0.12s;
+}
+.delay-3 {
+  animation-delay: 0.18s;
+}
+.delay-4 {
+  animation-delay: 0.24s;
+}
+.delay-5 {
+  animation-delay: 0.3s;
+}

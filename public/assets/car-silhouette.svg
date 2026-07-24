@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 460 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Decoration / Car Silhouette" clip-path="url(#clip0_0_99)">
+<g id="Car / Body">
+<path d="M270 -97L469.186 -29.5H70.8142L270 -97Z" fill="#040508" fill-opacity="0.05"/>
+<path d="M466.152 -30H73.8477L270 -96.4727L466.152 -30Z" stroke="#040508" stroke-opacity="0.2"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_99">
+<rect width="460" height="100" fill="white"/>
+</clipPath>
+</defs>
+</svg>
