@@ -21,62 +21,124 @@ export function ScrollVideo() {
     let raf = 0;
     let smoothed = 0;
     let lastFrame = 0;
+    let ready = false;
 
     const targetTime = () => {
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return 0.001;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const progress =
         max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-      return progress * (video.duration - 0.05);
+      return Math.min(
+        Math.max(progress * (video.duration - 0.05), 0.001),
+        video.duration - 0.05,
+      );
     };
 
-    // Smoothed scrub — runs every frame in normal browsers
+    const seekTo = (time: number) => {
+      try {
+        if (Math.abs(video.currentTime - time) > 0.005) {
+          video.currentTime = time;
+        }
+      } catch {
+        // Browser may reject seeks until enough data is buffered
+      }
+    };
+
+    const paintFrame = () => {
+      if (cancelled || !Number.isFinite(video.duration)) return;
+      smoothed = targetTime();
+      seekTo(smoothed);
+    };
+
+    /** Decode + paint the first frame — needed in Safari / cold caches */
+    const kickDecoder = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        void playPromise
+          .then(() => {
+            video.pause();
+            paintFrame();
+          })
+          .catch(() => {
+            paintFrame();
+          });
+      } else {
+        paintFrame();
+      }
+    };
+
+    const markReady = () => {
+      if (cancelled || ready) return;
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+      ready = true;
+      kickDecoder();
+    };
+
     const tick = () => {
       raf = requestAnimationFrame(tick);
       lastFrame = performance.now();
-      if (!video.duration || video.readyState < 2) return;
+      if (!ready || video.readyState < 2) return;
 
       const target = targetTime();
       smoothed += (target - smoothed) * 0.16;
       if (Math.abs(target - smoothed) < 0.01) smoothed = target;
-      if (Math.abs(video.currentTime - smoothed) > 0.005) {
-        video.currentTime = smoothed;
-      }
+      seekTo(smoothed);
     };
 
-    // Fallback for contexts where rAF is throttled (hidden/embedded views):
-    // seek directly on the scroll event instead
     const scrub = () => {
-      if (!video.duration || video.readyState < 2) return;
+      if (!ready || video.readyState < 2) return;
       if (performance.now() - lastFrame > 200) {
-        video.currentTime = smoothed = targetTime();
+        smoothed = targetTime();
+        seekTo(smoothed);
       }
     };
 
-    // Fully buffer the file so currentTime seeks resolve instantly
-    const load = async () => {
-      try {
-        const res = await fetch(VIDEO);
-        const blob = await res.blob();
-        if (cancelled) return;
-        objectUrl = URL.createObjectURL(blob);
-        video.src = objectUrl;
-      } catch {
-        video.src = VIDEO; // stream it as a fallback
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && ready) {
+        kickDecoder();
       }
-      video.load();
-      video.addEventListener(
-        "loadeddata",
-        () => {
-          // Nudge off 0 so the browser paints a frame instead of the poster
-          video.currentTime = smoothed = Math.max(targetTime(), 0.001);
-        },
-        { once: true },
-      );
     };
-    void load();
 
+    video.addEventListener("loadedmetadata", markReady);
+    video.addEventListener("loadeddata", markReady);
+    video.addEventListener("canplay", markReady);
+    document.addEventListener("visibilitychange", onVisible);
     window.addEventListener("scroll", scrub, { passive: true });
     window.addEventListener("resize", scrub, { passive: true });
+
+    // Start streaming immediately so a frame shows before the full blob lands
+    video.src = VIDEO;
+    video.load();
+    if (video.readyState >= 1) markReady();
+
+    // Upgrade to a fully buffered blob for snappier seeks once ready
+    const upgrade = async () => {
+      try {
+        const res = await fetch(VIDEO, { cache: "force-cache" });
+        if (!res.ok || cancelled) return;
+        const blob = await res.blob();
+        if (cancelled) return;
+
+        const time = video.currentTime || targetTime();
+        objectUrl = URL.createObjectURL(blob);
+        ready = false;
+        video.src = objectUrl;
+        video.load();
+
+        const restore = () => {
+          if (cancelled) return;
+          ready = true;
+          seekTo(time);
+          kickDecoder();
+        };
+        video.addEventListener("loadeddata", restore, { once: true });
+        if (video.readyState >= 2) restore();
+      } catch {
+        // Keep streaming from the original URL
+      }
+    };
+    void upgrade();
+
     raf = requestAnimationFrame(tick);
 
     return () => {
@@ -84,6 +146,11 @@ export function ScrollVideo() {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", scrub);
       window.removeEventListener("resize", scrub);
+      document.removeEventListener("visibilitychange", onVisible);
+      video.removeEventListener("loadedmetadata", markReady);
+      video.removeEventListener("loadeddata", markReady);
+      video.removeEventListener("canplay", markReady);
+      video.pause();
       if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
   }, []);
