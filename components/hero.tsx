@@ -27,7 +27,7 @@ export function Hero() {
                   ICONIC
                 </h1>
 
-                <div className="mt-0.5 flex h-[clamp(2.6rem,12vw,7rem)] items-stretch gap-3 md:gap-5">
+                <div className="mt-0.5 flex h-[clamp(2.6rem,12vw,7rem)] items-center gap-3 overflow-visible md:gap-5">
                   <div className="aspect-[48/99] h-full shrink-0 overflow-clip">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -38,7 +38,8 @@ export function Hero() {
                       className="block size-full object-fill brightness-0 invert"
                     />
                   </div>
-                  <p className="flex items-center font-display text-[clamp(2.6rem,12vw,7rem)] leading-none tracking-[-0.03em] text-racing-red">
+                  {/* Scale past the em-box so Alfa Slab caps match the BY SVG height */}
+                  <p className="font-display text-[calc(clamp(2.6rem,12vw,7rem)*1.4)] leading-none tracking-[-0.03em] text-racing-red">
                     DESIGN.
                   </p>
                 </div>
