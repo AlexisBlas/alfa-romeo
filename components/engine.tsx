@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ScrollCount } from "@/components/scroll-count";
 
@@ -17,11 +17,20 @@ type ParallaxImageProps = {
 function ParallaxImage({ src, alt, speed, className }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [missing, setMissing] = useState(false);
+  const [travel, setTravel] = useState(speed);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [speed, -speed]);
+  const y = useTransform(scrollYProgress, [0, 1], [travel, -travel]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setTravel(mq.matches ? speed * 0.2 : speed);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [speed]);
 
   return (
     <motion.div
@@ -59,57 +68,59 @@ const CALLOUTS = [
 
 export function Engine() {
   return (
-    <section id="engine" className="w-full px-page pb-24 pt-8 md:pb-36">
+    <section id="engine" className="w-full px-page pb-16 pt-6 md:pb-36 md:pt-8">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="frost-panel-dark max-w-[44rem] p-7 md:p-10"
+        className="frost-panel-dark max-w-[44rem]"
       >
-        <div className="flex items-center gap-3">
-          <span aria-hidden className="h-0.5 w-6 bg-amber" />
-          <span className="font-mono text-[13px] tracking-[2px] text-amber">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span aria-hidden className="h-0.5 w-6 shrink-0 bg-amber" />
+          <span className="font-mono text-[12px] tracking-[2px] text-amber md:text-[13px]">
             POWERTRAIN
           </span>
-          <span className="font-mono text-[13px] tracking-[2px] text-amber">
+          <span className="font-mono text-[12px] tracking-[2px] text-amber md:text-[13px]">
             03
           </span>
-          <span className="font-mono text-[13px] text-white/60">/</span>
-          <span className="font-mono text-[13px] tracking-[1px] text-white/60">
+          <span className="font-mono text-[12px] text-white/60 md:text-[13px]">
+            /
+          </span>
+          <span className="font-mono text-[12px] tracking-[1px] text-white/60 md:text-[13px]">
             NETTUNO-DERIVED V6
           </span>
         </div>
 
-        <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.02em] text-white">
+        <h2 className="mt-6 font-display text-[clamp(2.25rem,10vw,5rem)] leading-[0.95] tracking-[-0.02em] text-white md:mt-8">
           THE BEATING
           <br />
           <span className="text-racing-red">HEART.</span>
         </h2>
       </motion.div>
 
-      {/* Floating collage — images drift at different speeds */}
-      <div className="relative mt-16 h-[110vh] min-h-[720px] w-full overflow-visible md:mt-24">
+      {/* Mobile: stacked collage. Desktop: absolute floating collage. */}
+      <div className="relative mt-10 flex flex-col gap-4 md:mt-24 md:block md:h-[110vh] md:min-h-[720px] md:gap-0 md:overflow-visible">
         <ParallaxImage
           src="/engine/engine-main.png"
           alt="Alfa Romeo twin-turbo V6 engine, studio lit"
           speed={-120}
-          className="absolute right-[15%] top-0 aspect-square w-[56%] md:w-[43%]"
+          className="relative aspect-square w-full md:absolute md:right-[calc(15%+60px)] md:top-0 md:w-[43%]"
         />
         <ParallaxImage
           src="/engine/engine-detail.png"
           alt="Macro detail of the intake plenum and turbo plumbing"
           speed={180}
-          className="absolute left-0 top-[14%] aspect-[4/5] w-[46%] md:w-[34%]"
+          className="relative aspect-[4/5] w-[78%] md:absolute md:left-0 md:top-[14%] md:w-[34%]"
         />
         <ParallaxImage
           src="/engine/exhaust-glow.png"
           alt="Titanium exhaust tips glowing after a hot lap"
           speed={260}
-          className="absolute bottom-[4%] left-[13%] aspect-square w-[42%] md:left-[19%] md:w-[30%]"
+          className="relative ml-auto aspect-square w-[70%] md:absolute md:bottom-[4%] md:left-[19%] md:ml-0 md:w-[30%]"
         />
 
-        {/* Spec callouts */}
+        {/* Spec callouts — desktop only */}
         {CALLOUTS.map((callout, i) => (
           <motion.div
             key={callout.text}
@@ -133,7 +144,7 @@ export function Engine() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="frost-panel-dark mt-20 flex flex-wrap items-baseline justify-between gap-8 p-7 md:mt-28 md:p-10"
+        className="frost-panel-dark mt-12 flex flex-wrap items-baseline justify-between gap-6 md:mt-28 md:gap-8"
       >
         {[
           { to: 620, unit: "CV" },
@@ -142,7 +153,7 @@ export function Engine() {
         ].map((stat) => (
           <p
             key={stat.unit}
-            className="font-bebas text-[clamp(2.5rem,7vw,5.5rem)] leading-none tracking-[1px] text-white"
+            className="font-bebas text-[clamp(2rem,12vw,5.5rem)] leading-none tracking-[1px] text-white"
           >
             <ScrollCount to={stat.to} />
             <span className="ml-2 text-[0.4em] text-amber-hot">

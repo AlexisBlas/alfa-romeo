@@ -156,7 +156,7 @@ export function ScrollVideo() {
   }, []);
 
   return (
-    <div aria-hidden className="fixed inset-x-0 bottom-0 top-20 z-0">
+    <div aria-hidden className="fixed inset-x-0 bottom-0 top-16 z-0 md:top-20">
       <video
         ref={videoRef}
         muted

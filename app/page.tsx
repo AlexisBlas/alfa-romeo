@@ -10,8 +10,8 @@ export default function Home() {
     <main className="relative min-h-dvh overflow-x-clip text-ink">
       <ScrollVideo />
       <Navigation />
-      {/* pt-20 clears the fixed navbar */}
-      <div className="relative z-10 pt-20">
+      {/* pt clears the fixed navbar (h-16 mobile / h-20 desktop) */}
+      <div className="relative z-10 pt-16 md:pt-20">
         <Hero />
         <div className="relative">
           {/* Scrim over the film — eases in through the hero's tail,

@@ -25,7 +25,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-14 md:gap-20">
+        <div className="flex flex-wrap gap-10 sm:gap-14 md:gap-20">
           {COLUMNS.map((column) => (
             <div key={column.title}>
               <p className="font-mono text-[10px] tracking-[2px] text-amber">

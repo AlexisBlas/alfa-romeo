@@ -8,10 +8,10 @@ const LINKS: { label: string; href: string; active?: boolean }[] = [
 
 export function Navigation() {
   return (
-    <header className="fixed inset-x-0 top-0 z-20 flex h-20 w-full items-center border-b border-white/10 bg-[#040508] px-page">
+    <header className="fixed inset-x-0 top-0 z-20 flex h-16 w-full items-center border-b border-white/10 bg-[#040508] px-page md:h-20">
       <a
         href="/"
-        className="font-bebas shrink-0 text-[30px] tracking-[3px] text-white"
+        className="font-bebas shrink-0 text-[24px] tracking-[2px] text-white md:text-[30px] md:tracking-[3px]"
       >
         Garaje
       </a>
@@ -40,7 +40,7 @@ export function Navigation() {
 
       <a
         href="#tickets"
-        className="ml-auto inline-flex shrink-0 items-center justify-center bg-amber px-7 py-3.5 font-condensed text-[13px] font-bold tracking-[2px] text-cta-ink transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-amber-hot active:scale-[0.98] md:ml-0"
+        className="ml-auto inline-flex shrink-0 items-center justify-center bg-amber px-4 py-2.5 font-condensed text-[11px] font-bold tracking-[1.5px] text-cta-ink transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-amber-hot active:scale-[0.98] md:ml-0 md:px-7 md:py-3.5 md:text-[13px] md:tracking-[2px]"
       >
         GET TICKETS
       </a>
