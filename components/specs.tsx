@@ -1,19 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ScrollCount } from "@/components/scroll-count";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const SPECS = [
-  { value: "V6 90°", unit: "BITURBO", label: "ENGINE — 2,993 CC" },
-  { value: "620", unit: "CV", label: "POWER @ 7,500 RPM" },
-  { value: "730", unit: "NM", label: "TORQUE @ 3,000 RPM" },
-  { value: "<3.0", unit: "S", label: "0–100 KM/H" },
-  { value: "333", unit: "KM/H", label: "TOP SPEED" },
-  { value: "1,500", unit: "KG", label: "DRY WEIGHT" },
-  { value: "8", unit: "SPEED DCT", label: "GEARBOX — RWD" },
-  { value: "33", unit: "UNITS", label: "CARBON MONOCOQUE" },
-] as const;
+type Spec = {
+  unit: string;
+  label: string;
+  to: number;
+  decimals?: number;
+  commas?: boolean;
+  prefix?: string;
+  suffix?: string;
+};
+
+const SPECS: Spec[] = [
+  {
+    to: 90,
+    prefix: "V6 ",
+    suffix: "°",
+    unit: "BITURBO",
+    label: "ENGINE — 2,993 CC",
+  },
+  { to: 620, unit: "CV", label: "POWER @ 7,500 RPM" },
+  { to: 730, unit: "NM", label: "TORQUE @ 3,000 RPM" },
+  { to: 3.0, decimals: 1, prefix: "<", unit: "S", label: "0–100 KM/H" },
+  { to: 333, unit: "KM/H", label: "TOP SPEED" },
+  { to: 1500, commas: true, unit: "KG", label: "DRY WEIGHT" },
+  { to: 8, unit: "SPEED DCT", label: "GEARBOX — RWD" },
+  { to: 33, unit: "UNITS", label: "CARBON MONOCOQUE" },
+];
 
 export function Specs() {
   return (
@@ -62,7 +79,13 @@ export function Specs() {
             className="frost-panel-dark p-6 md:p-8"
           >
             <p className="font-bebas text-[clamp(2rem,4vw,3.25rem)] leading-none tracking-[1px] text-white">
-              {spec.value}{" "}
+              <ScrollCount
+                to={spec.to}
+                decimals={spec.decimals}
+                commas={spec.commas}
+                prefix={spec.prefix}
+                suffix={spec.suffix}
+              />{" "}
               <span className="text-[0.45em] text-amber-hot">{spec.unit}</span>
             </p>
             <p className="mt-3 font-mono text-[9px] tracking-[1.5px] text-white/60">

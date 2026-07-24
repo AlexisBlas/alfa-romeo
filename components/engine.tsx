@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ScrollCount } from "@/components/scroll-count";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -135,15 +136,15 @@ export function Engine() {
         className="frost-panel-dark mt-20 flex flex-wrap items-baseline justify-between gap-8 p-7 md:mt-28 md:p-10"
       >
         {[
-          { value: "620", unit: "CV" },
-          { value: "730", unit: "NM" },
-          { value: "333", unit: "KM/H" },
+          { to: 620, unit: "CV" },
+          { to: 730, unit: "NM" },
+          { to: 333, unit: "KM/H" },
         ].map((stat) => (
           <p
             key={stat.unit}
             className="font-bebas text-[clamp(2.5rem,7vw,5.5rem)] leading-none tracking-[1px] text-white"
           >
-            {stat.value}
+            <ScrollCount to={stat.to} />
             <span className="ml-2 text-[0.4em] text-amber-hot">
               {stat.unit}
             </span>
