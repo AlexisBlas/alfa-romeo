@@ -1,10 +1,10 @@
-const LINKS = [
+const LINKS: { label: string; href: string; active?: boolean }[] = [
   { label: "TEAM", href: "#team" },
   { label: "RACES", href: "#races" },
   { label: "CARS", href: "#cars", active: true },
   { label: "DRIVERS", href: "#drivers" },
   { label: "PARTNERS", href: "#partners" },
-] as const;
+];
 
 export function Navigation() {
   return (
