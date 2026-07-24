@@ -20,8 +20,8 @@ export default function Home() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 -top-[20vh] bottom-0"
           >
-            <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-black/85" />
-            <div className="h-[calc(100%-20vh)] w-full bg-black/85" />
+            <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-black/70" />
+            <div className="h-[calc(100%-20vh)] w-full bg-black/70" />
           </div>
           <div className="relative">
             <Specs />
