@@ -5,44 +5,46 @@ export function Hero() {
         {/* Left copy — frosted panel over the film */}
         <div className="flex w-full flex-col items-start pt-8 pb-12 md:pb-16 lg:w-1/2 lg:pr-8">
           <div className="animate-fade-up flex flex-col items-start gap-7 md:gap-9">
-            <div className="flex items-center gap-3">
-              <span aria-hidden className="h-0.5 w-6 bg-amber" />
-              <span className="font-mono text-[13px] tracking-[2px] text-amber underline decoration-solid underline-offset-2">
-                CARS
-              </span>
-              <span className="font-mono text-[13px] tracking-[2px] text-amber">
-                01
-              </span>
-              <span className="font-mono text-[13px] text-white/60">/</span>
-              <span className="font-mono text-[13px] tracking-[1px] text-white/60">
-                2025 SEASON
-              </span>
-            </div>
-
-            <div className="w-full">
-              <h1 className="font-display text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.93] tracking-[-0.03em] text-white">
-                ICONIC
-              </h1>
-
-              <div className="mt-0.5 flex items-start gap-4 md:gap-5">
-                <div className="mt-2.5 h-[clamp(4rem,7vw,5.6rem)] w-[clamp(2rem,3.5vw,2.7rem)] shrink-0 overflow-clip">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/assets/headline-the.svg"
-                    alt=""
-                    width={48}
-                    height={99}
-                    className="size-full brightness-0 invert"
-                  />
-                </div>
-                <p className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.93] tracking-[-0.03em] text-racing-red">
-                  DESIGN.
-                </p>
+            <div className="flex flex-col items-start gap-3 md:gap-5">
+              <div className="flex items-center gap-3">
+                <span aria-hidden className="h-0.5 w-6 bg-amber" />
+                <span className="font-mono text-[13px] tracking-[2px] text-amber underline decoration-solid underline-offset-2">
+                  CARS
+                </span>
+                <span className="font-mono text-[13px] tracking-[2px] text-amber">
+                  01
+                </span>
+                <span className="font-mono text-[13px] text-white/60">/</span>
+                <span className="font-mono text-[13px] tracking-[1px] text-white/60">
+                  2025 SEASON
+                </span>
               </div>
 
-              <p className="mt-3 font-body text-[clamp(1.05rem,1.8vw,1.4rem)] leading-[1.35] tracking-[0.3px] text-white/90">
-                An automotive icon that transformed performance into art.
-              </p>
+              <div className="w-full">
+                <h1 className="font-display text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.93] tracking-[-0.03em] text-white">
+                  ICONIC
+                </h1>
+
+                <div className="mt-0.5 flex items-start gap-4 md:gap-5">
+                  <div className="mt-2.5 h-[clamp(4rem,7vw,5.6rem)] w-[clamp(2rem,3.5vw,2.7rem)] shrink-0 overflow-clip">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/assets/headline-the.svg"
+                      alt=""
+                      width={48}
+                      height={99}
+                      className="size-full brightness-0 invert"
+                    />
+                  </div>
+                  <p className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.93] tracking-[-0.03em] text-racing-red">
+                    DESIGN.
+                  </p>
+                </div>
+
+                <p className="mt-3 font-body text-[clamp(1.05rem,1.8vw,1.4rem)] leading-[1.35] tracking-[0.3px] text-white/90">
+                  An automotive icon that transformed performance into art.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
@@ -78,7 +80,7 @@ export function Hero() {
 
           <p
             aria-hidden
-            className="animate-fade-in delay-3 pointer-events-none absolute right-0 top-1/2 hidden origin-center -translate-y-1/2 rotate-90 whitespace-nowrap font-mono text-[8px] tracking-[2px] text-white/30 lg:block"
+            className="animate-fade-in delay-3 pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 [writing-mode:vertical-rl] whitespace-nowrap font-mono text-[8px] tracking-[2px] text-white/30 lg:block"
           >
             APEX F1 · 2025 CHAMPIONSHIP SEASON
           </p>
