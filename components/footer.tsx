@@ -15,7 +15,7 @@ const COLUMNS = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#040508]/90 px-page pb-8 pt-16 text-white backdrop-blur-md md:pt-20">
+    <footer className="w-full px-page pb-8 pt-16 text-white md:pt-20">
       <div className="flex flex-col justify-between gap-12 md:flex-row">
         <div className="max-w-[22rem]">
           <p className="font-bebas text-[36px] tracking-[3px]">Garaje</p>
