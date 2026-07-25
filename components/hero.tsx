@@ -84,28 +84,24 @@ export function Hero() {
 
         {/* Desktop telemetry / annotations */}
         <div className="relative hidden min-h-[calc(100dvh-80px)] w-full flex-1 overflow-visible lg:block">
-          <div className="animate-fade-up delay-2 absolute left-0 top-12 bg-amber px-3 py-1.5">
-            <span className="font-bebas text-[18px] tracking-[1px] text-cta-ink">
-              № 23
-            </span>
-          </div>
-
           <p
             aria-hidden
             className="animate-fade-in delay-3 pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 [writing-mode:vertical-rl] whitespace-nowrap font-mono text-[8px] tracking-[2px] text-white/30"
           >
             APEX F1 · 2025 CHAMPIONSHIP SEASON
           </p>
+        </div>
+      </div>
 
-          <div
-            aria-hidden
-            className="animate-fade-up delay-3 absolute bottom-14 left-0 w-[min(100%,34rem)]"
-          >
-            <div className="h-[5px] w-full bg-amber" />
-            <div className="mt-4 h-0.5 w-full bg-amber/30" />
+      {/* Desktop bottom bar — mirrors mobile: №23 left, model right, full-width line */}
+      <div className="absolute inset-x-0 bottom-14 z-10 hidden px-page lg:block">
+        <div className="animate-fade-up delay-2 flex w-full items-end justify-between gap-4">
+          <div className="bg-amber px-3 py-1.5">
+            <span className="font-bebas text-[18px] tracking-[1px] text-cta-ink">
+              № 23
+            </span>
           </div>
-
-          <div className="animate-fade-up delay-2 absolute bottom-14 right-0 z-10 flex flex-col items-end gap-1">
+          <div className="flex flex-col items-end gap-1">
             <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
               — Model
             </span>
@@ -116,6 +112,10 @@ export function Hero() {
               LAP 42 / 58 · P1
             </span>
           </div>
+        </div>
+        <div aria-hidden className="animate-fade-up delay-3 mt-5">
+          <div className="h-[5px] w-full bg-amber" />
+          <div className="mt-4 h-0.5 w-full bg-amber/30" />
         </div>
       </div>
 
