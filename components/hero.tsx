@@ -66,18 +66,16 @@ export function Hero() {
                   № 23
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="-rotate-90 whitespace-nowrap font-mono text-[9px] tracking-[1.5px] text-amber">
+              <div className="flex flex-col items-end gap-0.5">
+                <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
                   — Model
                 </span>
-                <div className="flex flex-col items-end gap-0.5">
-                  <span className="font-bebas text-[1.5rem] tracking-[1px] text-white">
-                    33 Stradale
-                  </span>
-                  <span className="font-mono text-[9px] tracking-[1px] text-white/60">
-                    LAP 42 / 58 · P1
-                  </span>
-                </div>
+                <span className="font-bebas text-[1.5rem] tracking-[1px] text-white">
+                  33 Stradale
+                </span>
+                <span className="font-mono text-[9px] tracking-[1px] text-white/60">
+                  LAP 42 / 58 · P1
+                </span>
               </div>
             </div>
             <div aria-hidden className="h-[4px] w-full bg-amber" />
@@ -85,22 +83,24 @@ export function Hero() {
         </div>
 
         {/* Desktop telemetry / annotations */}
-        <div className="relative hidden min-h-[calc(100dvh-80px)] w-full flex-1 lg:block">
+        <div className="relative hidden min-h-[calc(100dvh-80px)] w-full flex-1 overflow-visible lg:block">
           <div className="animate-fade-up delay-2 absolute left-0 top-12 bg-amber px-3 py-1.5">
             <span className="font-bebas text-[18px] tracking-[1px] text-cta-ink">
               № 23
             </span>
           </div>
 
-          <div className="animate-fade-up delay-2 absolute right-0 top-10 flex items-center gap-3">
-            <span className="-rotate-90 whitespace-nowrap font-mono text-[9px] tracking-[1.5px] text-amber">
-              — Model
-            </span>
-            <div className="flex flex-col items-end gap-1">
+          <div className="animate-fade-up delay-2 absolute right-32 top-10 z-10">
+            {/* writing-mode keeps the badge as one vertical unit (avoids
+                transform fighting the fade-up animation / clipping) */}
+            <div className="flex flex-col items-end gap-1 [writing-mode:vertical-rl] rotate-180">
+              <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
+                — Model
+              </span>
               <span className="font-bebas text-[clamp(1.75rem,4vw,2.25rem)] tracking-[1px] text-white">
                 33 Stradale
               </span>
-              <span className="font-mono text-[9px] tracking-[1px] text-white/60">
+              <span className="whitespace-nowrap font-mono text-[9px] tracking-[1px] text-white/60">
                 LAP 42 / 58 · P1
               </span>
             </div>
