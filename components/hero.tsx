@@ -66,16 +66,18 @@ export function Hero() {
                   № 23
                 </span>
               </div>
-              <div className="flex flex-col items-end gap-0.5">
-                <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
+              <div className="flex items-center gap-2">
+                <span className="-rotate-90 whitespace-nowrap font-mono text-[9px] tracking-[1.5px] text-amber">
                   — Model
                 </span>
-                <span className="font-bebas text-[1.5rem] tracking-[1px] text-white">
-                  33 Stradale
-                </span>
-                <span className="font-mono text-[9px] tracking-[1px] text-white/60">
-                  LAP 42 / 58 · P1
-                </span>
+                <div className="flex flex-col items-end gap-0.5">
+                  <span className="font-bebas text-[1.5rem] tracking-[1px] text-white">
+                    33 Stradale
+                  </span>
+                  <span className="font-mono text-[9px] tracking-[1px] text-white/60">
+                    LAP 42 / 58 · P1
+                  </span>
+                </div>
               </div>
             </div>
             <div aria-hidden className="h-[4px] w-full bg-amber" />
@@ -90,16 +92,18 @@ export function Hero() {
             </span>
           </div>
 
-          <div className="animate-fade-up delay-2 absolute right-0 top-10 flex flex-col items-end gap-1">
-            <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
+          <div className="animate-fade-up delay-2 absolute right-0 top-10 flex items-center gap-3">
+            <span className="-rotate-90 whitespace-nowrap font-mono text-[9px] tracking-[1.5px] text-amber">
               — Model
             </span>
-            <span className="font-bebas text-[clamp(1.75rem,4vw,2.25rem)] tracking-[1px] text-white">
-              33 Stradale
-            </span>
-            <span className="font-mono text-[9px] tracking-[1px] text-white/60">
-              LAP 42 / 58 · P1
-            </span>
+            <div className="flex flex-col items-end gap-1">
+              <span className="font-bebas text-[clamp(1.75rem,4vw,2.25rem)] tracking-[1px] text-white">
+                33 Stradale
+              </span>
+              <span className="font-mono text-[9px] tracking-[1px] text-white/60">
+                LAP 42 / 58 · P1
+              </span>
+            </div>
           </div>
 
           <p
