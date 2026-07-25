@@ -90,22 +90,6 @@ export function Hero() {
             </span>
           </div>
 
-          <div className="animate-fade-up delay-2 absolute right-32 top-10 z-10">
-            {/* writing-mode keeps the badge as one vertical unit (avoids
-                transform fighting the fade-up animation / clipping) */}
-            <div className="flex flex-col items-end gap-1 [writing-mode:vertical-rl] rotate-180">
-              <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
-                — Model
-              </span>
-              <span className="font-bebas text-[clamp(1.75rem,4vw,2.25rem)] tracking-[1px] text-white">
-                33 Stradale
-              </span>
-              <span className="whitespace-nowrap font-mono text-[9px] tracking-[1px] text-white/60">
-                LAP 42 / 58 · P1
-              </span>
-            </div>
-          </div>
-
           <p
             aria-hidden
             className="animate-fade-in delay-3 pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 [writing-mode:vertical-rl] whitespace-nowrap font-mono text-[8px] tracking-[2px] text-white/30"
@@ -119,6 +103,18 @@ export function Hero() {
           >
             <div className="h-[5px] w-full bg-amber" />
             <div className="mt-4 h-0.5 w-full bg-amber/30" />
+          </div>
+
+          <div className="animate-fade-up delay-2 absolute bottom-14 right-0 z-10 flex flex-col items-end gap-1">
+            <span className="font-mono text-[9px] tracking-[1.5px] text-amber">
+              — Model
+            </span>
+            <span className="font-bebas text-[clamp(1.75rem,4vw,2.25rem)] tracking-[1px] text-white">
+              33 Stradale
+            </span>
+            <span className="font-mono text-[9px] tracking-[1px] text-white/60">
+              LAP 42 / 58 · P1
+            </span>
           </div>
         </div>
       </div>
