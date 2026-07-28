@@ -61,9 +61,12 @@ function ParallaxImage({ src, alt, speed, className }: ParallaxImageProps) {
 }
 
 const CALLOUTS = [
-  { text: "TWIN IHI TURBOCHARGERS", position: "left-0 top-[4%]" },
-  { text: "DRY SUMP LUBRICATION", position: "right-[12%] top-[38%]" },
-  { text: "8,000 RPM REDLINE", position: "left-[2%] bottom-[8%]" },
+  // Right side, against engine-detail
+  { text: "TWIN IHI TURBOCHARGERS", position: "left-[56%] top-[8%]" },
+  // Just right of engine-main
+  { text: "DRY SUMP LUBRICATION", position: "left-[39%] top-[42%]" },
+  // Just right of exhaust-glow
+  { text: "8,000 RPM REDLINE", position: "left-[50%] bottom-[10%]" },
 ] as const;
 
 export function Engine() {
@@ -128,9 +131,9 @@ export function Engine() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.15 * i }}
-            className={`absolute ${callout.position} hidden items-center gap-3 md:flex`}
+            className={`absolute ${callout.position} hidden items-center gap-2 md:flex`}
           >
-            <span aria-hidden className="h-px w-10 bg-amber-hot" />
+            <span aria-hidden className="h-px w-8 bg-amber-hot" />
             <span className="frost-panel-dark px-3 py-2 font-mono text-[9px] tracking-[2px] text-white">
               {callout.text}
             </span>
