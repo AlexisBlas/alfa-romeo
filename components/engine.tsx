@@ -105,13 +105,13 @@ export function Engine() {
           src="/engine/engine-main.png"
           alt="Alfa Romeo twin-turbo V6 engine, studio lit"
           speed={-120}
-          className="relative aspect-square w-[85%] md:absolute md:right-[calc(28%+60px)] md:top-0 md:w-[37%]"
+          className="relative aspect-square w-[85%] md:absolute md:left-0 md:top-[14%] md:w-[37%]"
         />
         <ParallaxImage
           src="/engine/engine-detail.png"
           alt="Macro detail of the intake plenum and turbo plumbing"
           speed={180}
-          className="relative aspect-[4/5] w-[78%] md:absolute md:left-0 md:top-[14%] md:w-[34%]"
+          className="relative aspect-square w-[74%] md:absolute md:right-[calc(38%+60px)] md:top-0 md:w-[32%]"
         />
         <ParallaxImage
           src="/engine/exhaust-glow.png"
